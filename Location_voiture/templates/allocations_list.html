@@ -1,0 +1,25 @@
+<!-- templates/allocations_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Allocations List</title>
+</head>
+<body>
+    <h1>Vehicle Allocations</h1>
+    {% if allocations %}
+        <ul>
+        {% for allocation in allocations %}
+            <li>
+                Client: {{ allocation.client }} | 
+                Vehicule: {{ allocation.vehicule }} | 
+                Agence: {{ allocation.agence }} | 
+                Location: {{ allocation.location }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No allocations found.</p>
+    {% endif %}
+    <a href="{% url 'allocate_vehicle' %}">Allocate a Vehicle</a>
+</body>
+</html>

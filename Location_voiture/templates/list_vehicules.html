@@ -1,0 +1,20 @@
+<!-- templates/list_vehicules.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Vehicles</title>
+</head>
+<body>
+    <h1>Vehicles</h1>
+    {% if vehicules %}
+        <ul>
+        {% for vehicule in vehicules %}
+            <li>{{ vehicule.model }} (Agence: {{ vehicule.agence.name }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No vehicles found.</p>
+    {% endif %}
+    <a href="{% url 'add_vehicule' %}">Add a New Vehicle</a>
+</body>
+</html>

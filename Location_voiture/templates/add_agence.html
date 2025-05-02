@@ -1,0 +1,16 @@
+<!-- templates/add_agence.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Agency</title>
+</head>
+<body>
+    <h1>Add a New Agency</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Agency</button>
+    </form>
+    <a href="{% url 'list_agences' %}">View All Agencies</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!-- templates/list_agences.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Agencies</title>
+</head>
+<body>
+    <h1>Agencies</h1>
+    {% if agences %}
+        <ul>
+        {% for agence in agences %}
+            <li>{{ agence.name }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No agencies found.</p>
+    {% endif %}
+    <a href="{% url 'add_agence' %}">Add a New Agency</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- templates/add_vehicule.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Vehicle</title>
+</head>
+<body>
+    <h1>Add a New Vehicle</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Vehicle</button>
+    </form>
+    <a href="{% url 'list_vehicules' %}">View All Vehicles</a>
+</body>
+</html>

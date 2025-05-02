@@ -1,0 +1,20 @@
+<!-- templates/list_clients.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Clients</title>
+</head>
+<body>
+    <h1>Clients</h1>
+    {% if clients %}
+        <ul>
+        {% for client in clients %}
+            <li>{{ client.name }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No clients found.</p>
+    {% endif %}
+    <a href="{% url 'add_client' %}">Add a New Client</a>
+</body>
+</html>
