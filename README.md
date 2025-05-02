@@ -36,5 +36,5 @@
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/easycar.git
-cd easycar
+git clone https://github.com/revenger101/EASYCAR.git
+cd Easycar
