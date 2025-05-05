@@ -21,3 +21,7 @@ class AllocationForm(forms.Form):
     client = forms.ModelChoiceField(queryset=Client.objects.all())
     vehicule = forms.ModelChoiceField(queryset=Vehicule.objects.all())
     agence = forms.ModelChoiceField(queryset=Agence.objects.all())
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Your Name'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Your Message', 'rows': 5}), required=True)

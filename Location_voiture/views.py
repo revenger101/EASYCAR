@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import AllocationForm , ClientForm, VehiculeForm, AgenceForm
-from .models import Reservation, Location, Paiement , Client , Vehicule , Agence
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from .forms import AllocationForm, ClientForm, VehiculeForm, AgenceForm, ContactForm
+from .models import Reservation, Location, Paiement, Client, Vehicule, Agence, ContactMessage
+from django.contrib import messages
 
 def allocate_vehicle(request):
     if request.method == 'POST':
@@ -11,9 +14,12 @@ def allocate_vehicle(request):
             vehicule = form.cleaned_data['vehicule']
             agence = form.cleaned_data['agence']
 
-            if not Reservation.objects.filter(vehicule=vehicule, location__isnull=True).exists():
-                return HttpResponse("Vehicle is already reserved.")
+            # Check if the vehicle is already reserved (has a reservation with a non-null location)
+            if Reservation.objects.filter(vehicule=vehicule, location__isnull=False).exists():
+                messages.error(request, "Vehicle is already reserved.")
+                return render(request, 'allocation.html', {'form': form})
 
+            # Create payment, location, and reservation
             paiement = Paiement.objects.create(agence=agence)
             location = Location.objects.create(paiement=paiement)
             reservation = Reservation.objects.create(
@@ -22,7 +28,8 @@ def allocate_vehicle(request):
                 agence=agence,
                 location=location
             )
-            return HttpResponse("Vehicle allocated successfully!")
+            messages.success(request, "Vehicle allocated successfully!")
+            return redirect('list_allocations')
     else:
         form = AllocationForm()
     return render(request, 'allocation.html', {'form': form})
@@ -72,3 +79,36 @@ def list_vehicules(request):
 def list_agences(request):
     agences = Agence.objects.all()
     return render(request, 'list_agences.html', {'agences': agences})
+
+def home(request):
+    return render(request, 'home.html', {
+        'title': 'Home Page',
+        'message': 'Welcome to the Vehicle Rental System!'
+    })
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after registration
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            ContactMessage.objects.create(
+                name=form.cleaned_data['name'],
+                message=form.cleaned_data['message']
+            )
+            messages.success(request, 'Your message has been sent successfully!')
+            form = ContactForm()  # Reset form after submission
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})

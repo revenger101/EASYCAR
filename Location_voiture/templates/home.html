@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Client - Easycar</title>
+    <title>Easycar - Car Rental</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Font Awesome for Icons -->
@@ -76,108 +76,172 @@
             background: #0056b3;
             transform: scale(1.05);
         }
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            color: #333;
+            padding: 5px;
+        }
+        .language-selector select:focus {
+            outline: none;
+        }
         /* Hero Section */
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 80px 0;
+            padding: 150px 0;
             text-align: center;
             position: relative;
         }
         .hero-section h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 700;
             animation: fadeInDown 1s ease-in-out;
         }
         .hero-section p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
             animation: fadeInUp 1s ease-in-out 0.5s;
             animation-fill-mode: both;
         }
-        /* Form Section */
-        .form-section {
-            padding: 60px 0;
-            background-color: #ffffff;
-        }
-        .form-card {
-            background: linear-gradient(145deg, #ffffff, #f0f8ff);
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            padding: 30px;
+        .search-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             max-width: 600px;
             margin: 0 auto;
         }
-        .form-card h2 {
-            text-align: center;
-            color: #007bff;
-            margin-bottom: 30px;
-            font-weight: 600;
+        /* Features Section */
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .form-group {
-            margin-bottom: 20px;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .feature-card i {
+            color: #007bff;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+            overflow: hidden;
+        }
+        .testimonials-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-weight: 700;
+        }
+        .testimonial-carousel {
+            display: flex;
+            animation: slideLeft 20s linear infinite;
+            width: max-content;
+        }
+        .testimonial-carousel:hover {
+            animation-play-state: paused;
+        }
+        .testimonial-card {
+            background: linear-gradient(145deg, #ffffff, #f0f8ff);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin: 15px;
+            width: 350px;
+            flex: 0 0 auto;
+            transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
         }
-        .form-group label {
-            font-weight: 500;
-            color: #333;
-            transition: all 0.3s;
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            pointer-events: none;
-        }
-        .form-group input:focus + label,
-        .form-group input:not(:placeholder-shown) + label,
-        .form-group select:focus + label,
-        .form-group select:not(:placeholder-shown) + label {
-            top: -20px;
-            left: 10px;
-            font-size: 0.9rem;
-            color: #007bff;
-        }
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-        }
-        .btn-submit {
-            background: #007bff;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            width: 100%;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .btn-submit:hover {
-            background: #0056b3;
+        .testimonial-card:hover {
             transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-        .view-link {
-            display: inline-block;
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #007bff;
+        }
+        .testimonial-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .testimonial-card p:before {
+            content: '\f10d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
             color: #007bff;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 20px;
-            transition: color 0.3s;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: 0;
         }
-        .view-link:hover {
-            color: #0056b3;
+        .testimonial-card h5 {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 600;
+            text-align: right;
+        }
+        @keyframes slideLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .carousel-controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .carousel-controls button {
+            background: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+        .carousel-controls button:hover {
+            background: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .testimonial-carousel {
+                flex-direction: column;
+                animation: none;
+                width: 100%;
+            }
+            .testimonial-card {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
         }
         /* Footer */
         footer {
@@ -285,7 +349,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="btn contact-btn text-white" href="#contact">Contact Us</a>
+                        <a class="btn contact-btn text-white" href="{% url 'contact' %}">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -295,30 +359,112 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Add a New Client</h1>
-            <p>Register a new customer to our platform</p>
+            <h1>Welcome to Easycar</h1>
+            <p>Your trusted partner for seamless and hassle-free car rentals</p>
+            <div class="search-form">
+                <form action="{% url 'allocate_vehicle' %}" method="get">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <select class="form-select" name="location" required>
+                                <option value="" disabled selected>Select Location</option>
+                                <option value="agence1">Agence 1</option>
+                                <option value="agence2">Agence 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary w-100">Search Cars</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
-    <!-- Form Section -->
-    <section class="form-section">
+    <!-- Features Section -->
+    <section class="py-5">
         <div class="container">
-            <div class="form-card">
-                <h2>Add Client</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div class="form-group">
-                            {{ field }}
-                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <h2 class="text-center mb-5">Why Choose Easycar?</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-car"></i>
+                            <h5 class="card-title">Wide Selection</h5>
+                            <p class="card-text">Choose from a diverse range of vehicles to suit your needs.</p>
                         </div>
-                    {% endfor %}
-                    <button type="submit" class="btn-submit">Add Client</button>
-                </form>
-                <div class="text-center">
-                    <a href="{% url 'list_clients' %}" class="view-link">View All Clients</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h5 class="card-title">Affordable Rates</h5>
+                            <p class="card-text">Competitive pricing with transparent fees.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-calendar-check"></i>
+                            <h5 class="card-title">Easy Booking</h5>
+                            <p class="card-text">Quick and intuitive reservation process.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M.">
+                    <p>Easycar made my trip so convenient! The booking process was a breeze, and the car was in perfect condition.</p>
+                    <h5>- Sarah M.</h5>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D.">
+                    <p>Affordable prices and excellent customer service. I'll definitely rent from Easycar again!</p>
+                    <h5>- John D.</h5>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emily R.">
+                    <p>The variety of cars was impressive, and the staff was super helpful. Highly recommend!</p>
+                    <h5>- Emily R.</h5>
+                </div>
+                <!-- Duplicate cards for seamless looping -->
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M.">
+                    <p>Easycar made my trip so convenient! The booking process was a breeze, and the car was in perfect condition.</p>
+                    <h5>- Sarah M.</h5>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D.">
+                    <p>Affordable prices and excellent customer service. I'll definitely rent from Easycar again!</p>
+                    <h5>- John D.</h5>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emily R.">
+                    <p>The variety of cars was impressive, and the staff was super helpful. Highly recommend!</p>
+                    <h5>- Emily R.</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Hit the Road?</h2>
+            <p class="lead">Book your car now and experience the freedom of the open road with Easycar.</p>
+            <a href="{% url 'allocate_vehicle' %}" class="btn btn-light btn-lg mt-3">Book Now</a>
         </div>
     </section>
 
@@ -399,23 +545,24 @@
         });
 
         // Form validation
-        const addForm = document.querySelector('.form-card form');
-        addForm.addEventListener('submit', (e) => {
-            const inputs = addForm.querySelectorAll('input, select');
-            let valid = true;
-            inputs.forEach(input => {
-                if (!input.value) {
-                    valid = false;
-                    input.style.borderColor = '#dc3545';
-                } else {
-                    input.style.borderColor = '#ddd';
-                }
-            });
-            if (!valid) {
+        const searchForm = document.querySelector('.search-form form');
+        searchForm.addEventListener('submit', (e) => {
+            const location = searchForm.querySelector('select[name="location"]').value;
+            const date = searchForm.querySelector('input[name="date"]').value;
+            if (!location || !date) {
                 e.preventDefault();
-                alert('Please fill in all required fields.');
+                alert('Please select a location and date.');
             }
         });
+
+        // Testimonial carousel controls
+        const carousel = document.querySelector('.testimonial-carousel');
+        function pauseCarousel() {
+            carousel.style.animationPlayState = 'paused';
+        }
+        function resumeCarousel() {
+            carousel.style.animationPlayState = 'running';
+        }
     </script>
 </body>
 </html>
