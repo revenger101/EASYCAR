@@ -118,7 +118,15 @@
             font-size: 1.2rem;
             color: #333;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .rating {
+            margin-top: 10px;
+        }
+        .rating-value {
+            font-size: 0.9rem;
+            color: #666;
+            margin-left: 5px;
         }
         .add-btn {
             display: inline-block;
@@ -271,6 +279,17 @@
                         <div class="col-md-4 mb-4">
                             <div class="agency-card">
                                 <h5>{{ agence.name }}</h5>
+                                <div class="rating">
+                                    <strong>Rating:</strong>
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= agence.rating %}
+                                            <i class="fas fa-star text-warning"></i>
+                                        {% else %}
+                                            <i class="far fa-star text-muted"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <span class="rating-value">({{ agence.rating }}/5)</span>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}

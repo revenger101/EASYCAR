@@ -187,6 +187,42 @@
             background: linear-gradient(45deg, #218838, #28a745);
             transform: scale(1.05);
         }
+        .info-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .info-card h4 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .user-info p {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .vehicle-preview-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .vehicle-preview h5 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .rating {
+            margin-top: 10px;
+        }
         /* Footer */
         footer {
             background-color: #1a1a1a;
@@ -311,18 +347,61 @@
     <!-- Form Section -->
     <section class="form-section">
         <div class="container">
-            <div class="form-card">
-                <h2>Vehicle Allocation</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div class="form-group">
-                            {{ field }}
-                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <div class="row">
+                <!-- User Info Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <h4><i class="fas fa-user me-2"></i>Booking For</h4>
+                        <div class="user-info">
+                            <p><strong>Name:</strong> {{ user_name }}</p>
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p class="text-muted">You are booking this vehicle for yourself</p>
                         </div>
-                    {% endfor %}
-                    <button type="submit" class="btn-submit">Allocate</button>
-                </form>
+                    </div>
+                </div>
+
+                <!-- Selected Vehicle Card -->
+                {% if selected_vehicule %}
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <h4><i class="fas fa-car me-2"></i>Selected Vehicle</h4>
+                        <div class="vehicle-preview">
+                            {% if selected_vehicule.picture %}
+                                <img src="{{ selected_vehicule.picture.url }}" alt="{{ selected_vehicule.model }}" class="vehicle-preview-img">
+                            {% endif %}
+                            <h5>{{ selected_vehicule.model }}</h5>
+                            <p><strong>Price:</strong> ${{ selected_vehicule.price }}/day</p>
+                            <div class="rating">
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= selected_vehicule.rating %}
+                                        <i class="fas fa-star text-warning"></i>
+                                    {% else %}
+                                        <i class="far fa-star text-muted"></i>
+                                    {% endif %}
+                                {% endfor %}
+                                <span>({{ selected_vehicule.rating }}/5)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Booking Form -->
+                <div class="col-md-4">
+                    <div class="form-card">
+                        <h2>Book Vehicle</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ field }}
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-calendar-check me-2"></i>Book Now
+                            </button>
+                        </form>
                 {% if form.non_field_errors %}
                     <div class="alert alert-danger mt-3" role="alert">
                         {{ form.non_field_errors }}
