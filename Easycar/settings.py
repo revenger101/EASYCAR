@@ -64,12 +64,8 @@ WSGI_APPLICATION = 'Easycar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'EASYCAR',#es el database mta3 pgadmin
-        'USER': 'postgres',#esm el user mta3 pgadmin
-        'PASSWORD': 'postgres',#el password mta3 pgadmin
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

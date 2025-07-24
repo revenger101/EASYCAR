@@ -3,9 +3,6 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 
-class Admin(models.Model):
-    pass
-
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100)
@@ -18,16 +15,6 @@ class Client(models.Model):
         return self.name
 
 class Promoteur(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
-class Compte(models.Model):
-    login = models.CharField(max_length=255)
-    admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
-
-class Loueur(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -47,10 +34,6 @@ class Vehicule(models.Model):
 
     def __str__(self):
         return self.model
-
-class Avis(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    vehicule = models.ForeignKey(Vehicule, on_delete=models.CASCADE)
 
 class Agence(models.Model):
     promoteur = models.ForeignKey(Promoteur, on_delete=models.CASCADE)

@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Client, Vehicule, Agence, Loueur, Promoteur
+from .models import Client, Vehicule, Agence, Promoteur
 
 class ClientForm(forms.ModelForm):
     class Meta:
